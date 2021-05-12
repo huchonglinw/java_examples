@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="alltest" />
+        <module name="class-examples" />
+        <module name="collection-examples" />
+        <module name="encode" />
+        <module name="face" />
+        <module name="jmm" />
+        <module name="jvm_examples" />
+        <module name="leetcode" />
+        <module name="string_examples" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
