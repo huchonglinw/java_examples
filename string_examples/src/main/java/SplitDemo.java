@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 /**
  * @author huchonglin
  * @date 2021/3/18 10:32
@@ -12,6 +14,15 @@ public class SplitDemo {
         final String[] split = str.split(",");
         for (String s : split) {
             System.out.println(s);
+        }
+    }
+
+    @Test
+    public void test() {
+        String str = "cat -v hello.xml | |";
+        String[] split = str.split("\\|");
+        for (String s : split) {
+            System.out.print(s);
         }
     }
 }
