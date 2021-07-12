@@ -1,6 +1,5 @@
 import commandbash.Bash;
-
-import java.io.IOException;
+import exception.CommandException;
 
 /**
  * 测试命令：
@@ -9,27 +8,30 @@ import java.io.IOException;
  * grep 1 D:\秋招心得.txt
  * cat D:\秋招心得.txt | grep 1 D:\秋招心得.txt
  * 3、 cat D:\秋招心得.txt | grep 1 | wc -l
+ * wc -l D:\秋招心得.txt
  * @author: hcl
  * @date: 2021/6/5 19:38
  */
 public class Main {
-    public static void main(String[] args) throws IOException {
-        chooseBash();
-        init();
+    public static void main(String[] args) throws  CommandException {
+        Bash bash = chooseBash();
+        init(bash);
     }
 
     /**
-     * 选择哪个bash启动程序：处理命令行、用户登录...
+     * 仿照Linux bash，用于选择哪个bash启动程序，如处理命令行的bash、用户登录的bash...
      */
-    private static void chooseBash() {
-
+    private static Bash chooseBash() {
+        return new Bash();
     }
 
     /**
-     * 初始化单例类（ioc）、命令控制台
+     * 初始化bash
+     * 1. 初始化单例类（ioc）、命令控制台
+     * 2. 执行主逻辑
+     * @param bash
      */
-    private static void init() throws IOException {
-        Bash bash = new Bash();
+    private static void init(Bash bash) throws CommandException {
         bash.initBash();
         bash.process();
     }
