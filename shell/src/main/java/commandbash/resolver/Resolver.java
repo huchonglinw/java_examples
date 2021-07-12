@@ -1,6 +1,7 @@
 package commandbash.resolver;
 
 import commandbash.command.Command;
+import exception.CommandException;
 
 /**
  * 命令解析器
@@ -13,5 +14,5 @@ public interface Resolver {
      * @param command 字符串命令
      * @return
      */
-    Command resolve(String command);
+    Command resolve(String command) throws CommandException;
 }

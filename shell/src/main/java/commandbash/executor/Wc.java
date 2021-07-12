@@ -5,10 +5,11 @@ import commandbash.command.Command;
 import java.util.List;
 
 /**
+ * 统计数据源中的数据
  * @author: hcl
  * @date: 2021/6/7 14:48
  */
-public class Wc extends AbstractExecutor {
+public class Wc extends AbstractFileExecutor {
     private static final String OPTION_C = "-c";
     private static final String OPTION_L = "-l";
     private static final String OPTION_W = "-w";

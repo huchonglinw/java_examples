@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  * @author: hcl
  * @date: 2021/6/6 15:58
  */
-public class Grep extends AbstractExecutor{
+public class Grep extends AbstractFileExecutor {
     @Override
     protected void check(Command command) throws CommandException {
         super.check(command);

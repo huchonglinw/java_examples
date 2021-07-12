@@ -12,7 +12,13 @@ import java.util.ArrayList;
  * @author: hcl
  * @date: 2021/6/6 00:20
  */
-public class SimpleResolver {
+public class SimpleResolver implements Resolver{
+    /**
+     *
+     * @param inputCommand
+     * @return
+     * @throws CommandException
+     */
     public Command resolve(String inputCommand) throws CommandException {
         String[] commands = inputCommand.trim().split(" ");
         Command command;

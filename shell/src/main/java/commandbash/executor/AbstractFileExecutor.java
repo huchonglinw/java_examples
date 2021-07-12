@@ -11,12 +11,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 执行器默认实现
+ * 文件执行器默认实现
+ *
+ * AbstractFileExecutor的子类需要从文件中获取数据
  *
  * @author: hcl
  * @date: 2021/6/7 14:48
  */
-public abstract class AbstractExecutor implements Executor {
+public abstract class AbstractFileExecutor implements Executor {
+    /**
+     * 重写了Executor接口的process方法
+     *
+     * 该方法会判断命令的数据来源类型以确定是否需要为命令进行文件IO
+     *
+     * 如果命令的数据来源是管道类型，提供空方法给予子类对数据做过滤操作。
+     * @param command 命令结构体
+     * @return
+     * @throws CommandException
+     * @throws IOException
+     */
     @Override
     public Result process(Command command) throws CommandException, IOException {
         Result result = new Result();
