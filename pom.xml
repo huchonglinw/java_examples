@@ -29,6 +29,7 @@
         <module>face</module>
         <module>encode</module>
         <module>jvm_examples</module>
+        <module>shell</module>
     </modules>
     <dependencies>
         <dependency>
