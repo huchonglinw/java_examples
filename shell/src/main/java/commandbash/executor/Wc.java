@@ -9,11 +9,16 @@ import java.util.List;
  * @author: hcl
  * @date: 2021/6/7 14:48
  */
-public class Wc extends AbstractFileExecutor {
+public class Wc extends AbstractFileCommandExecutor {
     private static final String OPTION_C = "-c";
     private static final String OPTION_L = "-l";
     private static final String OPTION_W = "-w";
 
+    /**
+     * todo 逻辑有误
+     * @param command
+     * @return
+     */
     @Override
     protected List<String> filterEnd(Command command) {
         List<String> dataSources = command.getDataSources();

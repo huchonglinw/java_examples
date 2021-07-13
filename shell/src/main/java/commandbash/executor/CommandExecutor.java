@@ -11,7 +11,7 @@ import java.io.IOException;
  * @author: hcl
  * @date: 2021/6/5 00:48
  */
-public interface Executor {
+public interface CommandExecutor {
     /**
      * 命令执行
      * @param command 命令结构体

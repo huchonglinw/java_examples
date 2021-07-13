@@ -30,6 +30,7 @@
         <module>encode</module>
         <module>jvm_examples</module>
         <module>shell</module>
+        <module>io-examples</module>
     </modules>
     <dependencies>
         <dependency>

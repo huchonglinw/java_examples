@@ -1,7 +1,7 @@
 package commandbash.executor;
 
 import commandbash.command.Command;
-import commandbash.command.GrepCommand;
+import commandbash.command.PatternCommand;
 import constant.ErrorEnum;
 import exception.CommandException;
 
@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
  * @author: hcl
  * @date: 2021/6/6 15:58
  */
-public class Grep extends AbstractFileExecutor {
+public class Grep extends AbstractFileCommandExecutor {
     @Override
     protected void check(Command command) throws CommandException {
         super.check(command);
-        GrepCommand grepCommand = (GrepCommand)command;
-        String patterns = grepCommand.getPatterns();
+        PatternCommand patternCommand = (PatternCommand)command;
+        String patterns = patternCommand.getPatterns();
         if(patterns == null || patterns.length() == 0) {
             throw new CommandException(ErrorEnum.COMMAND_OPT_ERROR.getMsg());
         }
@@ -26,8 +26,8 @@ public class Grep extends AbstractFileExecutor {
 
     @Override
     protected List<String> filterEnd(Command command) {
-        GrepCommand grepCommand = (GrepCommand)command;
-        return command.getDataSources().stream().filter(str -> str.contains(grepCommand.getPatterns())).collect(Collectors.toList());
+        PatternCommand patternCommand = (PatternCommand)command;
+        return command.getDataSources().stream().filter(str -> str.contains(patternCommand.getPatterns())).collect(Collectors.toList());
 
     }
 }

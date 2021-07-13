@@ -5,7 +5,7 @@ package commandbash.command;
  * @author: hcl
  * @date: 2021/6/5 01:27
  */
-public class GrepCommand extends Command {
+public class PatternCommand extends Command {
     /**
      * 正则表达式
      */

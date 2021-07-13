@@ -18,7 +18,7 @@ import java.util.List;
  * @author: hcl
  * @date: 2021/6/7 14:48
  */
-public abstract class AbstractFileExecutor implements Executor {
+public abstract class AbstractFileCommandExecutor implements CommandExecutor {
     /**
      * 重写了Executor接口的process方法
      *
@@ -51,7 +51,8 @@ public abstract class AbstractFileExecutor implements Executor {
     }
 
     /**
-     * 读文件
+     * 读文件，这块有点问题
+     * // todo 当文件没有设置utf-8编码时会乱码
      *
      * @param dataSources
      * @return
@@ -59,27 +60,36 @@ public abstract class AbstractFileExecutor implements Executor {
      */
     private ArrayList<String> readFile(List<String> dataSources) throws CommandException, IOException {
         File file = new File(dataSources.get(0));
-        FileReader fis = null;
+//        FileReader fis = null;
         BufferedReader br = null;
+        InputStreamReader inputStreamReader = null;
+        FileInputStream fileInputStream = null;
         String str;
         ArrayList<String> arrayList = new ArrayList<>();
 
         try {
-            fis = new FileReader(file);
-            br = new BufferedReader(fis);
+            fileInputStream = new FileInputStream(file);
+            inputStreamReader = new InputStreamReader(fileInputStream,"UTF-8");
+            br = new BufferedReader(inputStreamReader);
             while ((str = br.readLine()) != null) {
                 arrayList.add(readFileFilter(str));
             }
-            fis.close();
+//            fis.close();
             br.close();
         } catch (FileNotFoundException e) {
             throw new CommandException(ErrorEnum.FILE_NOT_EXIXT.getMsg());
         } finally {
-            if (fis != null) {
-                fis.close();
-            }
+//            if (fis != null) {
+//                fis.close();
+//            }
             if (br != null) {
                 br.close();
+            }
+            if(inputStreamReader != null) {
+                inputStreamReader.close();
+            }
+            if(fileInputStream != null) {
+                fileInputStream.close();
             }
         }
         return arrayList;

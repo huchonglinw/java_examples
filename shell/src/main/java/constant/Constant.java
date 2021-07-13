@@ -13,9 +13,9 @@ public interface Constant {
     String COMMON_COMMAND = "common_command";
 
     /**
-     * 复杂命令的标识符（key）
+     * 正则命令的标识符（key）
      */
-    String COMPLEX_COMMAND = "complex_command";
+    String PATTERN_COMMAND = "pattern_command";
 
     /**
      * 命令最小长度

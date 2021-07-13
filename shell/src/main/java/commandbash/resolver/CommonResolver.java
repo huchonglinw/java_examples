@@ -8,19 +8,20 @@ import exception.CommandException;
 import java.util.ArrayList;
 
 /**
- * 普通命令解析器
+ * 简单命令解析器
  * @author: hcl
  * @date: 2021/6/6 00:20
  */
-public class SimpleResolver implements Resolver{
+public class CommonResolver implements Resolver{
     /**
      *
+     * todo 存在问题，如果路径中有空格，则找不到文件
      * @param inputCommand
      * @return
      * @throws CommandException
      */
     public Command resolve(String inputCommand) throws CommandException {
-        String[] commands = inputCommand.trim().split(" ");
+        String[] commands = inputCommand.trim().split("\\s");
         Command command;
         if(commands.length == Constant.TWO_LENGTH_COMMAND) {
             command = twoLengthResolve(commands);
