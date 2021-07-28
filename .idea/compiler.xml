@@ -7,16 +7,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="encode" />
         <module name="alltest" />
         <module name="class-examples" />
-        <module name="collection-examples" />
-        <module name="encode" />
-        <module name="face" />
-        <module name="jmm" />
+        <module name="guava_examples" />
+        <module name="joda-time" />
         <module name="jvm_examples" />
         <module name="leetcode" />
+        <module name="jmm" />
         <module name="string_examples" />
+        <module name="face" />
+        <module name="shell" />
+        <module name="io-examples" />
+        <module name="jdk-examples" />
+        <module name="train" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="collection-examples" target="8" />
+      <module name="java_lang_examples" target="8" />
+      <module name="juc-examples" target="8" />
+      <module name="thread-examples" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

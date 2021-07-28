@@ -10,18 +10,19 @@ import java.io.*;
  * @date: 2021/6/2 16:55
  */
 public class BufferReaderTest {
+    public static void main(String[] args) {
+        BufferReaderTest bufferReaderTest = new BufferReaderTest();
+        bufferReaderTest.fileReader(Constants.FILE1);
+    }
 
 
     /**
      * 使用BufferReader循环读取文件
      * br.readLine() 返回String
      */
-    public static void fileReader(File file) {
-        FileReader fr;
-        BufferedReader br;
-        try {
-            fr = new FileReader(file);
-            br = new BufferedReader(fr);
+    public void fileReader(File file) {
+        try (FileReader fr = new FileReader(file);
+             BufferedReader br = new BufferedReader(fr)) {
             String str;
             StringBuilder result = new StringBuilder();
             int count = 0;
@@ -30,16 +31,12 @@ public class BufferReaderTest {
             }
             System.out.println(count);
             System.out.println(result.toString());
-            fr.close();
-            br.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
 
 
     /**

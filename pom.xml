@@ -24,13 +24,16 @@
         <module>class-examples</module>
         <module>leetcode</module>
         <module>jmm</module>
-        <module>collection-examples</module>
         <module>string_examples</module>
         <module>face</module>
         <module>encode</module>
         <module>jvm_examples</module>
         <module>shell</module>
+        <module>train</module>
         <module>io-examples</module>
+        <module>guava_examples</module>
+        <module>jdk-examples</module>
+        <module>joda-time</module>
     </modules>
     <dependencies>
         <dependency>
@@ -49,6 +52,39 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.9</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-core -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.3</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+
+
+
+
 
     </dependencies>
 
