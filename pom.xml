@@ -29,11 +29,12 @@
         <module>encode</module>
         <module>jvm_examples</module>
         <module>shell</module>
-        <module>train</module>
         <module>io-examples</module>
         <module>guava_examples</module>
         <module>jdk-examples</module>
         <module>joda-time</module>
+        <module>bit_examples</module>
+        <module>md5_examples</module>
     </modules>
     <dependencies>
         <dependency>

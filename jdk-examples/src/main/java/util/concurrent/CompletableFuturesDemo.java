@@ -1,5 +1,6 @@
 package util.concurrent;
 
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +16,7 @@ import java.util.concurrent.CompletableFuture;
 public class CompletableFuturesDemo {
     private static final Logger log = LoggerFactory.getLogger(CompletableFuturesDemo.class);
 
+    @Test
     public void test() throws InterruptedException {
         CompletableFuture<Integer> completableFuture1 = CompletableFuture.supplyAsync(() -> {
             log.info("this is a one task");
@@ -47,8 +49,8 @@ public class CompletableFuturesDemo {
 
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        CompletableFuturesDemo completableFuturesDemo = new CompletableFuturesDemo();
-        completableFuturesDemo.test();
+    @Test
+    public void runSyncTest() {
+        CompletableFuture.runAsync(() -> System.out.println("hello")).join();
     }
 }

@@ -9,8 +9,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="encode" />
         <module name="alltest" />
+        <module name="bit_examples" />
         <module name="class-examples" />
         <module name="guava_examples" />
+        <module name="md5_examples" />
         <module name="joda-time" />
         <module name="jvm_examples" />
         <module name="leetcode" />
@@ -20,14 +22,28 @@
         <module name="shell" />
         <module name="io-examples" />
         <module name="jdk-examples" />
-        <module name="train" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="collection-examples" target="8" />
       <module name="java_lang_examples" target="8" />
       <module name="juc-examples" target="8" />
+      <module name="springboot" target="1.8" />
+      <module name="springboot_examples" target="1.8" />
       <module name="thread-examples" target="8" />
+      <module name="train" target="8" />
+      <module name="user" target="1.8" />
+      <module name="user-center" target="1.8" />
+      <module name="usercenter" target="8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springboot" options="-parameters" />
+      <module name="springboot_examples" options="-parameters" />
+      <module name="user" options="-parameters" />
+      <module name="user-center" options="-parameters" />
+      <module name="usercenter" options="-parameters" />
+    </option>
   </component>
 </project>

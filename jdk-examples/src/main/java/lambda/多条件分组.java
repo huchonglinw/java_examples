@@ -6,6 +6,7 @@ import po.Goods;
 import po.父子类.Base;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -19,30 +20,38 @@ public class 多条件分组 {
          */
 
     }
-    Goods goods1 = new Goods("编码1", "编码1规格1", "编码1规格1批次1");
-    Goods goods2 = new Goods("编码1", "编码1规格1", "编码1规格1批次2");
-    Goods goods3 = new Goods("编码1", "编码1规格2", "编码1规格2批次1");
-    Goods goods4 = new Goods("编码1", "编码1规格2", "编码1规格2批次2");
-    Goods goods5 = new Goods("编码2", "编码2规格1", "编码2规格1批次1");
-    Goods goods6 = new Goods("编码2", "编码2规格1", "编码2规格1批次2");
-    Goods goods7 = new Goods("编码2", "编码2规格2", "编码2规格2批次1");
-    Goods goods8 = new Goods("编码2", "编码2规格2", "编码2规格2批次2");
-    Goods goods9 = new Goods("编码2", "编码2规格2", "编码2规格2批次3");
+
+    /**
+     * 编码 规格 批次
+     */
+    Goods goods1 = new Goods("编码A", "编码A规格A", "编码A规格A批次A");
+    Goods goods2 = new Goods("编码A", "编码A规格A", "编码A规格A批次B");
+    Goods goods3 = new Goods("编码A", "编码A规格B", "编码A规格B批次A");
+    Goods goods4 = new Goods("编码A", "编码A规格B", "编码A规格B批次B");
+    Goods goods5 = new Goods("编码B", "编码B规格A", "编码B规格A批次A");
+    Goods goods6 = new Goods("编码B", "编码B规格A", "编码B规格A批次B");
+    Goods goods7 = new Goods("编码B", "编码B规格B", "编码B规格B批次A");
+    Goods goods8 = new Goods("编码C", "编码B规格B", "编码B规格B批次B");
+    Goods goods9 = new Goods("编码C", "编码B规格B", "编码B规格B批次C");
     List<Goods> goodsList = Arrays.asList(goods1, goods2, goods3, goods4, goods5, goods6, goods7, goods8, goods9);
 
     /**
-     * 测试分组计数
-     * 例如 goodsCode 和goodsBatch是一对多的关系，一个goodsCode下有多个批次
-     * 我要计算 相同编码下 有多少个批次。并且，生成一个map，key是批次，value是计数
+     * key:编码+规格，value第一个goods
      */
     @Test
-    public void test11(){
-//        goodsList.stream().collect(Collectors.groupingBy(Goods::getGoodsBatch, ))
+    public void Test2() {
+        Map<String, Optional<Goods>> collect = goodsList.stream().collect(Collectors.groupingBy(g -> g.getGoodsCode() + g.getGoodsSpecs(), Collectors.reducing((a, b) -> a)));
+        collect.entrySet().forEach(k -> {
+            System.out.println(k.getKey() +","+ k.getValue());
+        });
     }
 
+    /**
+     * 按照编码和规格分组
+     */
     @Test
     public void test2() {
-        Collection c = goodsList.stream().map( g -> {
+        Collection c = goodsList.parallelStream().map( g -> {
 
             Map<String,Goods> map = new HashMap<>(16);
             map.put(g.getGoodsCode() + g.getGoodsSpecs() ,g);
@@ -71,9 +80,9 @@ public class 多条件分组 {
 
     }
 
-    // [Goods(goodsCode=编码1, goodsSpecs=编码1规格2, goodsBatch=编码1规格2批次1,编码1规格2批次2), Goods(goodsCode=编码2, goodsSpecs=编码2规格1, goodsBatch=编码2规格1批次1,编码2规格1批次2), Goods(goodsCode=编码2, goodsSpecs=编码2规格2, goodsBatch=编码2规格2批次1,编码2规格2批次2,编码2规格2批次3), Goods(goodsCode=编码1, goodsSpecs=编码1规格1, goodsBatch=编码1规格1批次1,编码1规格1批次2)]
-    // [Goods(goodsCode=编码2, goodsSpecs=编码2规格1, goodsBatch=编码2规格1批次1,编码2规格1批次2), Goods(goodsCode=编码2, goodsSpecs=编码2规格2, goodsBatch=编码2规格2批次1,编码2规格2批次2,编码2规格2批次3), Goods(goodsCode=编码1, goodsSpecs=编码1规格2, goodsBatch=编码1规格2批次1,编码1规格2批次2), Goods(goodsCode=编码1, goodsSpecs=编码1规格1, goodsBatch=编码1规格1批次1,编码1规格1批次2)]
-    // [Goods(goodsCode=编码1, goodsSpecs=编码1规格2, goodsBatch=编码1规格2批次1,编码1规格2批次2), Goods(goodsCode=编码1, goodsSpecs=编码1规格1, goodsBatch=编码1规格1批次1,编码1规格1批次2), Goods(goodsCode=编码2, goodsSpecs=编码2规格1, goodsBatch=编码2规格1批次1,编码2规格1批次2), Goods(goodsCode=编码2, goodsSpecs=编码2规格2, goodsBatch=编码2规格2批次1,编码2规格2批次2,编码2规格2批次3)]
+    // [Goods(goodsCode=编码A, goodsSpecs=编码A规格B, goodsBatch=编码A规格B批次A,编码A规格B批次B), Goods(goodsCode=编码B, goodsSpecs=编码B规格A, goodsBatch=编码B规格A批次A,编码B规格A批次B), Goods(goodsCode=编码B, goodsSpecs=编码B规格B, goodsBatch=编码B规格B批次A,编码B规格B批次B,编码B规格B批次3), Goods(goodsCode=编码A, goodsSpecs=编码A规格A, goodsBatch=编码A规格A批次A,编码A规格A批次B)]
+    // [Goods(goodsCode=编码B, goodsSpecs=编码B规格A, goodsBatch=编码B规格A批次A,编码B规格A批次B), Goods(goodsCode=编码B, goodsSpecs=编码B规格B, goodsBatch=编码B规格B批次A,编码B规格B批次B,编码B规格B批次3), Goods(goodsCode=编码A, goodsSpecs=编码A规格B, goodsBatch=编码A规格B批次A,编码A规格B批次B), Goods(goodsCode=编码A, goodsSpecs=编码A规格A, goodsBatch=编码A规格A批次A,编码A规格A批次B)]
+    // [Goods(goodsCode=编码A, goodsSpecs=编码A规格B, goodsBatch=编码A规格B批次A,编码A规格B批次B), Goods(goodsCode=编码A, goodsSpecs=编码A规格A, goodsBatch=编码A规格A批次A,编码A规格A批次B), Goods(goodsCode=编码B, goodsSpecs=编码B规格A, goodsBatch=编码B规格A批次A,编码B规格A批次B), Goods(goodsCode=编码B, goodsSpecs=编码B规格B, goodsBatch=编码B规格B批次A,编码B规格B批次B,编码B规格B批次3)]
     @Test
     public void test3() {
         List<Goods> goods12 =goodsList.stream().collect(Collectors.groupingBy(g -> g.getGoodsCode() + g.getGoodsSpecs(),Collectors.toList()))
@@ -175,5 +184,13 @@ public class 多条件分组 {
         Long aLong = Long.getLong("20");
         Long aLong1 = Long.valueOf("20");
         System.out.println(aLong1);
+    }
+
+    @Test
+    public void test23() {
+        Map<String, Goods> collect = goodsList.stream()
+                .collect(Collectors.toMap(s -> {
+                    return s.getGoodsSpecs() + 1;
+                }, Function.identity()));
     }
 }

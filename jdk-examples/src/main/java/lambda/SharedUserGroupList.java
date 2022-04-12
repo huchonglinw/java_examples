@@ -1,6 +1,5 @@
 package lambda;
 
-import com.sun.deploy.net.proxy.UserDefinedProxyConfig;
 import org.junit.Test;
 import po.Trader;
 import po.UserGroup;
